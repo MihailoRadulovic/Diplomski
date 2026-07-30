@@ -26,6 +26,12 @@ npx expo start        # mora se pokrenuti bez crasha
 
 ---
 
+## Web projekat — samo referenca
+
+Web projekat (`C:\Users\Korisnik\Desktop\Sajt\Hakaton`) se **nikad ne menja**. Služi isključivo kao referenca — čitati radi razumevanja logike, ali nikad pisati, editovati niti commitovati u njemu.
+
+---
+
 ## Ključna pravila (bez izuzetaka)
 
 - **Nema sopstvenih odluka** — sve arhitekturalne odluke su definisane u `plan.md` i faza fajlovima
