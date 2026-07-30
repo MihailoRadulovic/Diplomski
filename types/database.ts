@@ -127,7 +127,7 @@ export interface Database {
         };
         Insert: {
           id?: string;
-          user_id: string;
+          user_id?: string; // Supabase postavlja auth.uid() automatski preko RLS
           biljka_id: string;
           deleted_at?: string | null;
           created_at?: string;
