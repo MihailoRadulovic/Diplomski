@@ -61,7 +61,7 @@ interface UsePretragaParams {
 export function usePretraga({ q, filter = '', strana = 1, randomKey }: UsePretragaParams) {
   const isRandom = !q && !filter;
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isFetching } = useQuery({
     queryKey: isRandom
       ? ['pretraga-random', randomKey]
       : ['pretraga', q, filter, strana],
@@ -75,6 +75,7 @@ export function usePretraga({ q, filter = '', strana = 1, randomKey }: UsePretra
     ukupno: data?.ukupno ?? 0,
     ukupno_strana: data?.ukupno_strana ?? 1,
     isLoading,
+    isFetching,
     isRandom,
   };
 }
