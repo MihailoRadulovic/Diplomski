@@ -125,7 +125,8 @@ export default function PrepoznavanjeTab() {
                           : 'border-zinc-300 dark:border-zinc-600'
                       }`}
                       accessibilityRole="radio"
-                      accessibilityState={{ selected: organ === vrednost }}
+                      accessibilityLabel={label}
+                      accessibilityState={{ checked: organ === vrednost }}
                     >
                       <Text
                         className={

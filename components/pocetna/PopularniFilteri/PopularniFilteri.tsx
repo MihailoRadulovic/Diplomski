@@ -31,6 +31,7 @@ export function PopularniFilteri() {
               style={({ pressed }) => (pressed ? { opacity: 0.75 } : undefined)}
               className="px-4 py-2 rounded-full border border-zinc-300 dark:border-zinc-600 bg-transparent"
               accessibilityRole="button"
+              accessibilityLabel={jezik === 'en' ? label.en : label.sr}
             >
               <Text
                 className="text-sm text-zinc-700 dark:text-zinc-300"

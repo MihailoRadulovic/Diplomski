@@ -33,6 +33,9 @@ export function NedavnoPregledano() {
             onPress={() => router.push(`/biljka/${s.slug}` as never)}
             style={({ pressed }) => (pressed ? { opacity: 0.75 } : undefined)}
             className="mr-3 items-center w-24"
+            accessibilityRole="button"
+            accessibilityLabel={s.srpski_naziv}
+            accessibilityHint="Otvara detalje biljke"
           >
             <View className="w-16 h-16 rounded-lg overflow-hidden bg-[#EAF3DE] dark:bg-zinc-800">
               {s.slika_url ? (

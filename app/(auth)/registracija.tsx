@@ -148,8 +148,10 @@ export default function RegistracijaEkran() {
             onPress={handleRegistracija}
             disabled={isPending}
             className="w-full py-3 rounded-lg bg-[#639922] items-center mb-6"
+            style={{ opacity: isPending ? 0.5 : 1 }}
             accessibilityRole="button"
             accessibilityLabel="Registrujte se"
+            accessibilityState={{ disabled: isPending }}
           >
             {isPending
               ? <ActivityIndicator color="white" />

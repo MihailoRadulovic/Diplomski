@@ -40,8 +40,10 @@ export function IznenadimeDugme() {
     <Pressable
       onPress={handleKlik}
       disabled={ucitava}
+      accessibilityRole="button"
       accessibilityLabel={t('iznenadi_me')}
-      style={({ pressed }) => (pressed ? { opacity: 0.7 } : undefined)}
+      accessibilityState={{ disabled: ucitava }}
+      style={({ pressed }) => ({ opacity: ucitava ? 0.5 : pressed ? 0.7 : 1 })}
       className="flex-row items-center gap-1.5 px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 self-center"
     >
       {ucitava ? (

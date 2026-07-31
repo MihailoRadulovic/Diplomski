@@ -15,8 +15,9 @@ export function FilterChip({ label, aktivan, onPress }: FilterChipProps) {
           ? 'bg-zelena-primarna border-zelena-primarna'
           : 'bg-transparent border-zinc-300 dark:border-zinc-600'
       }`}
-      accessibilityRole="button"
-      accessibilityState={{ selected: aktivan }}
+      accessibilityRole="checkbox"
+      accessibilityLabel={label}
+      accessibilityState={{ checked: aktivan }}
     >
       <Text
         className={`text-sm font-medium ${

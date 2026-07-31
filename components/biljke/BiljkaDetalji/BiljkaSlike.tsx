@@ -19,6 +19,7 @@ export function BiljkaSlike({ slike, srpski_naziv }: BiljkaSlikeProps) {
           source={{ uri: slika.url }}
           style={{ width, height: 260 }}
           contentFit="cover"
+          accessibilityRole="image"
           accessibilityLabel={slika.alt_tekst || srpski_naziv}
         />
       ))}

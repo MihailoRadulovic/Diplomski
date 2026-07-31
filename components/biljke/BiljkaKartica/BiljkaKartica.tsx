@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Pressable, View, Text } from 'react-native';
 import { Image } from 'expo-image';
 import { router } from 'expo-router';
@@ -5,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { SERIF_BOLD, SERIF_ITALIC } from '@/lib/constants/fontovi';
 import type { BiljkaKarticaProps } from './BiljkaKartica.types';
 
-export function BiljkaKartica({
+export const BiljkaKartica = memo(function BiljkaKartica({
   id,
   slug,
   srpski_naziv,
@@ -21,7 +22,8 @@ export function BiljkaKartica({
       style={({ pressed }) => (pressed ? { opacity: 0.85 } : undefined)}
       className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden"
       accessibilityRole="button"
-      accessibilityLabel={`${srpski_naziv}, ${latinski_naziv}`}
+      accessibilityLabel={`${srpski_naziv}, ${latinski_naziv}${porodica ? `, ${porodica}` : ''}`}
+      accessibilityHint="Otvara detalje biljke"
     >
       {/* Slika */}
       <View className="h-40 bg-[#EAF3DE] dark:bg-zinc-800">
@@ -71,6 +73,7 @@ export function BiljkaKartica({
             accessibilityRole="button"
             accessibilityLabel={je_omiljena ? 'Ukloni iz omiljenih' : 'Dodaj u omiljene'}
             accessibilityState={{ checked: je_omiljena }}
+            onStartShouldSetResponder={() => true}
             hitSlop={8}
           >
             <Ionicons
@@ -83,4 +86,4 @@ export function BiljkaKartica({
       </View>
     </Pressable>
   );
-}
+});
