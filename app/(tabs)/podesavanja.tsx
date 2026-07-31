@@ -45,13 +45,13 @@ export default function PodesavanjaTab() {
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-[#0F1A08]">
       <ScrollView className="flex-1 px-4" contentContainerStyle={{ paddingBottom: 24 }}>
-        <Text className="text-3xl font-semibold mt-6 mb-6" style={{ fontFamily: SERIF_BOLD }}>
+        <Text className="text-3xl font-semibold mt-6 mb-6 text-zinc-900 dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
           Podesavanja
         </Text>
 
         {/* Tema sekcija */}
         <View className="mb-8">
-          <Text className="text-lg font-semibold mb-3" style={{ fontFamily: SERIF_BOLD }}>
+          <Text className="text-lg font-semibold mb-3 text-zinc-900 dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
             Tema
           </Text>
           <View className="flex-row flex-wrap gap-2">
@@ -78,7 +78,7 @@ export default function PodesavanjaTab() {
 
         {/* Jezik sekcija */}
         <View className="mb-8">
-          <Text className="text-lg font-semibold mb-3" style={{ fontFamily: SERIF_BOLD }}>
+          <Text className="text-lg font-semibold mb-3 text-zinc-900 dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
             Jezik
           </Text>
           <View className="flex-row flex-wrap gap-2">
@@ -105,7 +105,7 @@ export default function PodesavanjaTab() {
 
         {/* Auth sekcija */}
         <View className="border-t border-zinc-200 dark:border-zinc-800 pt-6">
-          <Text className="text-lg font-semibold mb-4" style={{ fontFamily: SERIF_BOLD }}>
+          <Text className="text-lg font-semibold mb-4 text-zinc-900 dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
             Nalog
           </Text>
 
@@ -130,12 +130,12 @@ export default function PodesavanjaTab() {
               {korisnik?.user_metadata?.puno_ime && (
                 <View>
                   <Text className="text-xs text-zinc-400 mb-0.5">Ime</Text>
-                  <Text className="font-medium">{korisnik.user_metadata.puno_ime}</Text>
+                  <Text className="font-medium text-zinc-900 dark:text-white">{korisnik.user_metadata.puno_ime}</Text>
                 </View>
               )}
               <View>
                 <Text className="text-xs text-zinc-400 mb-0.5">Email</Text>
-                <Text className="font-medium">{korisnik?.email}</Text>
+                <Text className="font-medium text-zinc-900 dark:text-white">{korisnik?.email}</Text>
               </View>
               <Pressable
                 onPress={handleOdjava}

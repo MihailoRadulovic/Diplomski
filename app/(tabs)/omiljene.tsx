@@ -54,13 +54,13 @@ export default function OmiljeneTab() {
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-[#0F1A08]">
       <ScrollView className="flex-1 px-4" contentContainerStyle={{ paddingBottom: 24 }}>
-        <Text className="text-3xl font-semibold mt-6 mb-4" style={{ fontFamily: SERIF_BOLD }}>
+        <Text className="text-3xl font-semibold mt-6 mb-4 text-zinc-900 dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
           Omiljene biljke
         </Text>
 
         {jeGost === true && guestStavke.length > 0 && (
           <View className="flex-row gap-3 p-4 rounded-xl bg-[#FAEEDA] dark:bg-[#EF9F27]/10 border border-[#EF9F27]/40 mb-4">
-            <Text className="text-sm flex-1">
+            <Text className="text-sm flex-1 text-zinc-700 dark:text-zinc-300">
               Sacuvane biljke ce biti dostupne jos {preostaliDani} dana.{' '}
               <Text className="font-semibold underline" onPress={() => router.push('/(auth)/prijava')}>
                 Prijavi se
@@ -144,7 +144,7 @@ export default function OmiljeneTab() {
 function PraznoStanje() {
   return (
     <View className="py-16 items-center gap-4">
-      <Text className="font-semibold text-center">Nema omiljenih biljaka</Text>
+      <Text className="font-semibold text-center text-zinc-900 dark:text-white">Nema omiljenih biljaka</Text>
       <Text className="text-sm text-zinc-500 text-center">
         Sacuvaj biljke pritiskom na srce na kartici.
       </Text>
