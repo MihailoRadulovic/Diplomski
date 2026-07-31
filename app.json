@@ -12,6 +12,9 @@
         "backgroundColor": "#EAF3DE"
       },
       "package": "com.lekovitobilje.app"
-    }
+    },
+    "plugins": [
+      ["expo-image-picker", { "cameraPermission": "Dozvoli pristup kameri za prepoznavanje biljaka." }]
+    ]
   }
 }
