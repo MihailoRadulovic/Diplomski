@@ -8,6 +8,9 @@ import {
   guestOmiljeneObrisi,
   guestBannerJeVidjeno,
   guestBannerSetVidjeno,
+  guestBannerSetPending,
+  guestBannerIsPending,
+  guestBannerClearPending,
   type GuestOmiljena,
 } from '@/lib/utils/guestOmiljene';
 
@@ -95,14 +98,19 @@ export function useOmiljene() {
 
   const isLoading = jeGost === null || (jeGost === false && isLoadingAuth);
 
-  // Soft-delete za auth korisnika
-  const toggleOmiljena = async (omiljenaId: string, _biljkaId: string) => {
-    await supabase
-      .from('omiljene')
-      .update({ deleted_at: new Date().toISOString() })
-      .eq('id', omiljenaId);
+  // Toggle za auth korisnika: INSERT ako nije u omiljenima, soft-delete ako jeste
+  const toggleOmiljena = useCallback(async (biljkaId: string) => {
+    const existing = omiljene.find((o) => o.biljka_id === biljkaId);
+    if (existing) {
+      await supabase
+        .from('omiljene')
+        .update({ deleted_at: new Date().toISOString() })
+        .eq('id', existing.id);
+    } else {
+      await supabase.from('omiljene').insert({ biljka_id: biljkaId });
+    }
     queryClient.invalidateQueries({ queryKey: ['omiljene'] });
-  };
+  }, [omiljene, queryClient]);
 
   const toggleGuestOmiljena = useCallback(async (biljkaId: string, slug: string) => {
     const jeVecOmiljena = guestStavke.some((s) => s.biljka_id === biljkaId);
@@ -112,8 +120,7 @@ export function useOmiljene() {
       const jePrvo = guestStavke.length === 0;
       await guestOmiljeneSacuvaj(biljkaId, slug);
       if (jePrvo && !(await guestBannerJeVidjeno())) {
-        await guestBannerSetVidjeno();
-        setShowGuestBaner(true);
+        await guestBannerSetPending();
       }
     }
     const nove = await guestOmiljeneUcitaj();
@@ -121,6 +128,14 @@ export function useOmiljene() {
   }, [guestStavke]);
 
   const zatvoriGuestBaner = useCallback(() => setShowGuestBaner(false), []);
+
+  const checkGuestBaner = useCallback(async () => {
+    if (await guestBannerIsPending()) {
+      await guestBannerSetVidjeno();
+      await guestBannerClearPending();
+      setShowGuestBaner(true);
+    }
+  }, []);
 
   // Proverava da li je biljka u omiljenima (radi za oba rezima)
   const jeOmiljena = useCallback(
@@ -131,13 +146,6 @@ export function useOmiljene() {
     [jeGost, guestStavke, omiljene]
   );
 
-  // Vraca ID omiljene stavke za auth korisnika (potrebno za soft-delete)
-  const omiljeneId = useCallback(
-    (biljkaId: string): string | undefined =>
-      omiljene.find((o) => o.biljka_id === biljkaId)?.id,
-    [omiljene]
-  );
-
   return {
     omiljene,
     isLoading,
@@ -145,9 +153,9 @@ export function useOmiljene() {
     guestStavke,
     showGuestBaner,
     zatvoriGuestBaner,
+    checkGuestBaner,
     toggleOmiljena,
     toggleGuestOmiljena,
     jeOmiljena,
-    omiljeneId,
   };
 }

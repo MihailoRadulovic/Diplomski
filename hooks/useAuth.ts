@@ -25,5 +25,5 @@ export function useAuth() {
   // jeGost: true kada je ucitavanje zavrseno i nema korisnika
   const jeGost = !ucitava && korisnik === null;
 
-  return { korisnik, ucitava, punoIme, ime, jeGost };
+  return { korisnik, ucitava, ime, jeGost };
 }

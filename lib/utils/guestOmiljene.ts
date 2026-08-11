@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const KLJUC_LISTA = 'guestOmiljene';
 const KLJUC_DATUM = 'guestOmiljeneDatum';
 const KLJUC_BANNER = 'guestOmiljeneBannerViewed';
+const KLJUC_BANNER_PENDING = 'guestOmiljeneBannerPending';
 const ROK_MS = 7 * 24 * 60 * 60 * 1000; // 7 dana
 
 export interface GuestOmiljena {
@@ -44,12 +45,26 @@ export async function guestBannerSetVidjeno(): Promise<void> {
   try { await AsyncStorage.setItem(KLJUC_BANNER, 'true'); } catch {}
 }
 
+export async function guestBannerSetPending(): Promise<void> {
+  try { await AsyncStorage.setItem(KLJUC_BANNER_PENDING, 'true'); } catch {}
+}
+
+export async function guestBannerIsPending(): Promise<boolean> {
+  try { return (await AsyncStorage.getItem(KLJUC_BANNER_PENDING)) === 'true'; }
+  catch { return false; }
+}
+
+export async function guestBannerClearPending(): Promise<void> {
+  try { await AsyncStorage.removeItem(KLJUC_BANNER_PENDING); } catch {}
+}
+
 export async function guestOmiljeneObrisi(): Promise<void> {
   try {
     await Promise.all([
       AsyncStorage.removeItem(KLJUC_LISTA),
       AsyncStorage.removeItem(KLJUC_DATUM),
       AsyncStorage.removeItem(KLJUC_BANNER),
+      AsyncStorage.removeItem(KLJUC_BANNER_PENDING),
     ]);
   } catch {}
 }
