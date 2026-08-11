@@ -1,13 +1,8 @@
 {
   "nav": {
-    "pocetna": "Pocetna",
-    "biljke": "Biljke",
-    "pretraga": "Pretraga",
-    "prepoznavanje": "Prepoznaj biljku",
-    "omiljene": "Omiljene",
-    "podesavanja": "Podesavanja",
     "prijava": "Prijava",
     "odjava": "Odjava",
+    "omiljene": "Omiljene",
     "registracija": "Registracija"
   },
   "pocetna": {
@@ -20,61 +15,24 @@
     "biljka_dana_nije_dostupna": "Biljka dana nije dostupna",
     "pogledaj_detalje": "Pogledaj detalje →",
     "popularni_filteri_naslov": "Pretrazi po delovanju",
-    "filter_smirujuce": "Smirujuće",
-    "filter_probavne": "Probavne",
-    "filter_protivupalno": "Protivupalno",
-    "filter_imunitet": "Imunitet",
-    "filter_jetra": "Jetra",
-    "filter_srce": "Srce i krvotok",
     "iznenadi_me": "Iznenadi me",
-    "nedavno_pregledano": "Nedavno pregledano",
-    "menja_se_za": "Menja se za {vreme}"
+    "badge": "Prirodna apoteka",
+    "nedavno_pregledano": "Nedavno pregledano"
   },
   "biljke": {
-    "naslov": "Lekovite biljke",
-    "pretraga_placeholder": "Pretrazite biljke...",
-    "nema_rezultata": "Nisu pronadjene biljke",
-    "lekovita_svojstva": "Lekovita svojstva",
     "porodica": "Porodica",
-    "upozorenja": "Upozorenja o interakcijama sa lekovima",
-    "upozorenja_opis": "Ove biljke mogu interagovati sa lekovima. Obavezno se posavetujte sa lekarom.",
-    "sacuvaj": "Sacuvaj",
-    "sacuvano": "Sacuvano",
-    "deo_biljke": "Deo biljke",
-    "nacin_upotrebe": "Nacin upotrebe",
-    "za_sta": "Za sta se koristi",
-    "lek": "Lek",
-    "opis_interakcije": "Opis interakcije",
-    "ozbiljnost": "Ozbiljnost",
-    "ozbiljnost_niska": "Niska",
-    "ozbiljnost_srednja": "Srednja",
-    "ozbiljnost_visoka": "Visoka",
-    "nema_slike": "Nema slike",
-    "prikazi_vise": "Prikazati vise",
-    "prikazano": "Prikazano {prikazano} od {ukupno}",
-    "kopiraj_latinski": "Kopiraj latinsko ime",
-    "kopirano": "Kopirano!"
+    "kopirano": "Kopirano!",
+    "kako_se_koristi": "Kako se koristi",
+    "interakcije_upozorenja": "Interakcije i upozorenja"
   },
   "pretraga": {
-    "naslov": "Pretraga",
-    "placeholder": "Unesite naziv biljke ili delovanje...",
-    "filteri": "Filteri",
-    "obrisi_filtere": "Obrisi filtere",
     "nema_rezultata": "Nema rezultata za vasu pretragu",
-    "nema_rezultata_opis": "Pokusajte sa drugim kljucnim recima ili ocistite filtere",
-    "predlog_biljaka": "Predlog biljaka",
-    "prikazano_opseg": "Prikazano {od}–{do} od {ukupno}",
-    "prikazano_jedan": "Prikazano {od} od {ukupno}",
-    "paginacija": "Navigacija po stranicama",
-    "prethodna_strana": "Prethodna stranica",
-    "sledeca_strana": "Sledeca stranica",
-    "strana": "Stranica"
+    "nema_rezultata_opis": "Pokusajte sa drugim kljucnim recima ili ocistite filtere"
   },
   "prepoznavanje": {
     "naslov": "Prepoznaj biljku",
     "opis": "Fotografisite biljku ili otpremite fotografiju iz galerije",
     "slikaj": "Slikaj biljku",
-    "fokusiraj_uput": "Fokusirajte biljku i slikajte",
     "otpremi": "Otpremi fotografiju",
     "organ_naslov": "Sta je prikazano na fotografiji?",
     "organ_list": "List",
@@ -93,20 +51,14 @@
     "nije_prepoznato_opis": "Pokusajte sa jasnijom fotografijom ili pretrazite po imenu",
     "pokusaj_ponovo": "Pokusaj ponovo",
     "nova_fotografija": "Nova fotografija",
-    "preostalih_zahteva": "Preostalih zahteva: {broj}",
     "pretrazi_po_imenu": "Pretrazi po imenu",
-    "pogledaj_biljku": "Pogledaj {naziv} →"
+    "pogledaj_biljku": "Pogledaj {naziv} →",
+    "preostalih_zahteva": "Preostalih zahteva danas: {broj}"
   },
   "omiljene": {
-    "naslov": "Moje omiljene biljke",
     "prazno": "Nije sacuvana ni jedna biljka",
     "prazno_opis": "Pronadjite biljku i kliknite ikonu srca da je sacuvate",
     "idi_na_biljke": "Pregledaj biljke",
-    "sacuvano": "Sacuvano",
-    "dodaj_u_omiljene": "Dodaj u omiljene",
-    "ukloni_iz_omiljenih": "Ukloni iz omiljenih",
-    "prijavi_se": "Prijavite se",
-    "registruj_se": "Registrujte se",
     "ili": "ili",
     "gost_baner_naslov": "Biljka dodata u omiljene",
     "gost_baner_rok": "Bice obrisana za {dani} dana. Prijavite se da sacuvate trajno.",
@@ -122,13 +74,9 @@
     "jezik": "Jezik",
     "jezik_sr": "Srpski",
     "jezik_en": "Engleski",
-    "profil_naslov": "Moj profil",
-    "clan_od": "Clan od",
-    "promeni_lozinku": "Promeni lozinku",
-    "nova_lozinka": "Nova lozinka",
-    "potvrdi_lozinku": "Potvrdi lozinku",
-    "sacuvaj_lozinku": "Sacuvaj lozinku",
-    "lozinka_azurirana": "Lozinka je uspesno azurirana"
+    "nije_prijavljen": "Nisi prijavljen/a.",
+    "odjava_poruka": "Da li si siguran da se zelis odjaviti?",
+    "ime": "Ime"
   },
   "auth": {
     "email": "Email adresa",
@@ -138,63 +86,25 @@
     "registrujte_se": "Registrujte se",
     "nema_naloga": "Nemate nalog?",
     "imate_nalog": "Vec imate nalog?",
-    "zaboravili_lozinku": "Zaboravili ste lozinku?",
     "proverite_email": "Proverite email i kliknite na link za potvrdu",
     "pogresni_podaci": "Pogresna email adresa ili lozinka",
     "prikazi_lozinku": "Prikazi lozinku",
-    "sakrij_lozinku": "Sakrij lozinku"
+    "sakrij_lozinku": "Sakrij lozinku",
+    "prijava_podnaslov": "Prijavi se na nalog",
+    "unesite_podatke": "Unesite email i lozinku.",
+    "greska_prijave": "Greska pri prijavi. Pokusaj ponovo.",
+    "sva_polja_obavezna": "Sva polja su obavezna.",
+    "greska_registracije": "Greska pri registraciji. Pokusaj ponovo.",
+    "proverite_email_naslov": "Proverite email",
+    "proverite_email_opis": "Poslali smo vam link za potvrdu na {email}"
   },
   "disclaimer": {
     "tekst": "Informacije su iskljucivo edukativnog karaktera i ne predstavljaju medicinsku preporuku. Pre upotrebe lekovitog bilja posavetujte se sa lekarom ili farmaceutom."
   },
-  "greske": {
-    "opsta": "Doslo je do greske",
-    "pokusaj_ponovo": "Pokusajte ponovo",
-    "nazad_na_pocetnu": "Vrati se na pocetnu",
-    "stranica_nije_nadjena": "Stranica nije pronadjena",
-    "biljka_nije_nadjena": "Biljka nije pronadjena",
-    "biljka_nije_nadjena_opis": "Proverite da li ste ispravno uneli naziv ili potrazite biljku putem pretrage.",
-    "nesto_je_poslo_po_zlu": "Nešto je pošlo po zlu",
-    "nesto_je_poslo_po_zlu_opis": "Desila se neočekivana greška. Pokušajte ponovo ili se vratite na početnu stranicu.",
-    "vrati_se_na_pocetnu": "Vrati se na početnu"
-  },
-  "offline": {
-    "naslov": "Nema internet konekcije",
-    "opis": "Proverite internet konekciju i pokusajte ponovo. Prethodno pregledane biljke su dostupne u kesu.",
-    "pokusaj_ponovo": "Pokusaj ponovo"
-  },
   "zajednicko": {
-    "ucitavanje": "Ucitavanje...",
     "podeli": "Podeli",
-    "link_kopiran": "Link kopiran u clipboard!",
-    "nova_verzija": "Nova verzija aplikacije je dostupna",
-    "osvezi_stranicu": "Osveži",
-    "sacuvaj": "Sacuvaj",
     "otkazi": "Otkazi",
-    "nazad": "Nazad",
-    "zatvori": "Zatvori",
-    "pretraga": "Pretraga",
-    "vise": "Vise",
-    "manje": "Manje",
-    "meni": "Meni",
-    "izgled": "Izgled",
     "nalog": "Nalog",
-    "svetli_mod": "Svetli mod",
-    "tamni_mod": "Tamni mod",
-    "odjavi_se": "Odjavi se",
-    "prijava_registracija": "Prijava / Registracija",
-    "tastaturne_precice": "Tastaturne prečice",
-    "precica_pretraga": "Otvori pretragu",
-    "precica_pomoc": "Prikaži prečice",
-    "precica_zatvori": "Zatvori",
-    "precice_napomena": "Prečice rade samo kada kursor nije u polju za unos."
-  },
-  "pwa": {
-    "install_naslov": "Dodaj na početni ekran",
-    "install_opis": "Koristi aplikaciju bez browsera, radi i offline",
-    "install_dugme": "Instaliraj",
-    "zatvori": "Zatvori",
-    "ios_uputstvo_1": "Pritisni",
-    "ios_uputstvo_2": "pa \"Dodaj na početni ekran\""
+    "odjavi_se": "Odjavi se"
   }
 }

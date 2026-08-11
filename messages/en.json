@@ -1,13 +1,8 @@
 {
   "nav": {
-    "pocetna": "Home",
-    "biljke": "Herbs",
-    "pretraga": "Search",
-    "prepoznavanje": "Identify Plant",
-    "omiljene": "Favorites",
-    "podesavanja": "Settings",
     "prijava": "Login",
     "odjava": "Logout",
+    "omiljene": "Favorites",
     "registracija": "Register"
   },
   "pocetna": {
@@ -20,61 +15,24 @@
     "biljka_dana_nije_dostupna": "Herb of the day unavailable",
     "pogledaj_detalje": "View details →",
     "popularni_filteri_naslov": "Browse by Effect",
-    "filter_smirujuce": "Calming",
-    "filter_probavne": "Digestive",
-    "filter_protivupalno": "Anti-inflammatory",
-    "filter_imunitet": "Immunity",
-    "filter_jetra": "Liver",
-    "filter_srce": "Heart & Circulation",
     "iznenadi_me": "Surprise me",
-    "nedavno_pregledano": "Recently viewed",
-    "menja_se_za": "Changes in {vreme}"
+    "badge": "Natural Pharmacy",
+    "nedavno_pregledano": "Recently viewed"
   },
   "biljke": {
-    "naslov": "Medicinal Herbs",
-    "pretraga_placeholder": "Search herbs...",
-    "nema_rezultata": "No herbs found",
-    "lekovita_svojstva": "Medicinal Uses",
     "porodica": "Family",
-    "upozorenja": "Drug Interaction Warnings",
-    "upozorenja_opis": "These herbs may interact with medications. Always consult your doctor.",
-    "sacuvaj": "Save",
-    "sacuvano": "Saved",
-    "deo_biljke": "Part of plant",
-    "nacin_upotrebe": "Method of use",
-    "za_sta": "Used for",
-    "lek": "Drug",
-    "opis_interakcije": "Interaction description",
-    "ozbiljnost": "Severity",
-    "ozbiljnost_niska": "Low",
-    "ozbiljnost_srednja": "Medium",
-    "ozbiljnost_visoka": "High",
-    "nema_slike": "No image",
-    "prikazi_vise": "Show more",
-    "prikazano": "Showing {prikazano} of {ukupno}",
-    "kopiraj_latinski": "Copy Latin name",
-    "kopirano": "Copied!"
+    "kopirano": "Copied!",
+    "kako_se_koristi": "How to use",
+    "interakcije_upozorenja": "Interactions and warnings"
   },
   "pretraga": {
-    "naslov": "Search",
-    "placeholder": "Enter herb name or effect...",
-    "filteri": "Filters",
-    "obrisi_filtere": "Clear filters",
     "nema_rezultata": "No results for your search",
-    "nema_rezultata_opis": "Try different keywords or clear the filters",
-    "predlog_biljaka": "Suggested Herbs",
-    "prikazano_opseg": "Showing {od}–{do} of {ukupno}",
-    "prikazano_jedan": "Showing {od} of {ukupno}",
-    "paginacija": "Page navigation",
-    "prethodna_strana": "Previous page",
-    "sledeca_strana": "Next page",
-    "strana": "Page"
+    "nema_rezultata_opis": "Try different keywords or clear the filters"
   },
   "prepoznavanje": {
     "naslov": "Identify a Plant",
     "opis": "Take a photo of the plant or upload one from your gallery",
     "slikaj": "Take a photo",
-    "fokusiraj_uput": "Focus on the plant and take a photo",
     "otpremi": "Upload photo",
     "organ_naslov": "What is shown in the photo?",
     "organ_list": "Leaf",
@@ -93,20 +51,14 @@
     "nije_prepoznato_opis": "Try a clearer photo or search by name",
     "pokusaj_ponovo": "Try again",
     "nova_fotografija": "New photo",
-    "preostalih_zahteva": "Remaining requests: {broj}",
     "pretrazi_po_imenu": "Search by name",
-    "pogledaj_biljku": "View {naziv} →"
+    "pogledaj_biljku": "View {naziv} →",
+    "preostalih_zahteva": "Remaining requests today: {broj}"
   },
   "omiljene": {
-    "naslov": "My Favorite Herbs",
     "prazno": "No herbs saved yet",
     "prazno_opis": "Find a herb and click the heart icon to save it",
     "idi_na_biljke": "Browse Herbs",
-    "sacuvano": "Saved",
-    "dodaj_u_omiljene": "Add to favorites",
-    "ukloni_iz_omiljenih": "Remove from favorites",
-    "prijavi_se": "Log in",
-    "registruj_se": "Register",
     "ili": "or",
     "gost_baner_naslov": "Herb added to favorites",
     "gost_baner_rok": "Will be deleted in {dani} days. Log in to save permanently.",
@@ -122,13 +74,9 @@
     "jezik": "Language",
     "jezik_sr": "Serbian",
     "jezik_en": "English",
-    "profil_naslov": "My Profile",
-    "clan_od": "Member since",
-    "promeni_lozinku": "Change Password",
-    "nova_lozinka": "New password",
-    "potvrdi_lozinku": "Confirm password",
-    "sacuvaj_lozinku": "Save password",
-    "lozinka_azurirana": "Password updated successfully"
+    "nije_prijavljen": "You are not logged in.",
+    "odjava_poruka": "Are you sure you want to log out?",
+    "ime": "Name"
   },
   "auth": {
     "email": "Email address",
@@ -138,63 +86,25 @@
     "registrujte_se": "Register",
     "nema_naloga": "Don't have an account?",
     "imate_nalog": "Already have an account?",
-    "zaboravili_lozinku": "Forgot your password?",
     "proverite_email": "Check your email and click the confirmation link",
     "pogresni_podaci": "Invalid email address or password",
     "prikazi_lozinku": "Show password",
-    "sakrij_lozinku": "Hide password"
+    "sakrij_lozinku": "Hide password",
+    "prijava_podnaslov": "Sign in to your account",
+    "unesite_podatke": "Enter your email and password.",
+    "greska_prijave": "Login error. Please try again.",
+    "sva_polja_obavezna": "All fields are required.",
+    "greska_registracije": "Registration error. Please try again.",
+    "proverite_email_naslov": "Check your email",
+    "proverite_email_opis": "We sent you a confirmation link to {email}"
   },
   "disclaimer": {
     "tekst": "This information is for educational purposes only and does not constitute medical advice. Consult a doctor or pharmacist before using medicinal herbs."
   },
-  "greske": {
-    "opsta": "Something went wrong",
-    "pokusaj_ponovo": "Try again",
-    "nazad_na_pocetnu": "Back to home",
-    "stranica_nije_nadjena": "Page not found",
-    "biljka_nije_nadjena": "Herb not found",
-    "biljka_nije_nadjena_opis": "Check if you entered the name correctly or search for the herb.",
-    "nesto_je_poslo_po_zlu": "Something went wrong",
-    "nesto_je_poslo_po_zlu_opis": "An unexpected error occurred. Try again or go back to the home page.",
-    "vrati_se_na_pocetnu": "Go to home page"
-  },
-  "offline": {
-    "naslov": "No internet connection",
-    "opis": "Check your internet connection and try again. Previously viewed herbs are available in cache.",
-    "pokusaj_ponovo": "Try again"
-  },
   "zajednicko": {
-    "ucitavanje": "Loading...",
     "podeli": "Share",
-    "link_kopiran": "Link copied to clipboard!",
-    "nova_verzija": "New version available",
-    "osvezi_stranicu": "Refresh",
-    "sacuvaj": "Save",
     "otkazi": "Cancel",
-    "nazad": "Back",
-    "zatvori": "Close",
-    "pretraga": "Search",
-    "vise": "More",
-    "manje": "Less",
-    "meni": "Menu",
-    "izgled": "Appearance",
     "nalog": "Account",
-    "svetli_mod": "Light mode",
-    "tamni_mod": "Dark mode",
-    "odjavi_se": "Log out",
-    "prijava_registracija": "Login / Register",
-    "tastaturne_precice": "Keyboard shortcuts",
-    "precica_pretraga": "Open search",
-    "precica_pomoc": "Show shortcuts",
-    "precica_zatvori": "Close",
-    "precice_napomena": "Shortcuts only work when the cursor is not in a text field."
-  },
-  "pwa": {
-    "install_naslov": "Add to Home Screen",
-    "install_opis": "Use the app without a browser, works offline too",
-    "install_dugme": "Install",
-    "zatvori": "Close",
-    "ios_uputstvo_1": "Tap",
-    "ios_uputstvo_2": "then \"Add to Home Screen\""
+    "odjavi_se": "Log out"
   }
 }

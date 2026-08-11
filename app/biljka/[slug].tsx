@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
-import { useLocalSearchParams, useNavigation } from 'expo-router';
+import { Stack, useLocalSearchParams, useNavigation } from 'expo-router';
+import { useTheme } from '@/hooks/useTheme';
+import { useT } from '@/hooks/useT';
 import { useBiljka } from '@/hooks/useBiljka';
 import { useNedavnoPregledano } from '@/hooks/useNedavnoPregledano';
 import { BiljkaSlike } from '@/components/biljke/BiljkaDetalji/BiljkaSlike';
@@ -39,9 +41,18 @@ function BiljkaDetaljiSkeleton() {
 export default function BiljkaEkran() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
   const navigation = useNavigation();
+  const { aktivnaTema } = useTheme();
+  const isDark = aktivnaTema === 'dark';
+  const t = useT('biljke');
   const { data: biljka, isLoading, isError } = useBiljka(slug);
   const { zapisi } = useNedavnoPregledano();
   const [toastMsg, setToastMsg] = useState('');
+
+  const headerOpcije = {
+    headerStyle: { backgroundColor: isDark ? '#0F1A08' : '#ffffff' },
+    headerTintColor: isDark ? '#ffffff' : '#27500A',
+    headerBackTitle: '',
+  };
 
   // Upis posete u AsyncStorage (ekvivalent BiljkaPosetaZapis)
   useEffect(() => {
@@ -66,11 +77,17 @@ export default function BiljkaEkran() {
     });
   }, [biljka?.id]);
 
-  if (isLoading) return <BiljkaDetaljiSkeleton />;
+  if (isLoading) return (
+    <>
+      <Stack.Screen options={headerOpcije} />
+      <BiljkaDetaljiSkeleton />
+    </>
+  );
   if (isError || !biljka) return <ErrorFallback />;
 
   return (
     <View className="flex-1 bg-white dark:bg-[#0F1A08]">
+      <Stack.Screen options={headerOpcije} />
       <ScrollView
         className="flex-1"
         showsVerticalScrollIndicator={false}
@@ -80,7 +97,7 @@ export default function BiljkaEkran() {
         <View className="px-4 gap-6">
           <BiljkaGlavnaInfo
             biljka={biljka}
-            onKopiranje={() => setToastMsg('Latinsko ime kopirano')}
+            onKopiranje={() => setToastMsg(t('kopirano'))}
           />
           <ShareDugme naziv={biljka.srpski_naziv} opis={biljka.opis} />
           {biljka.biljka_upotrebe?.length > 0 && (

@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import type { OzbiljnostUpozorenja } from '@/types/biljka';
-import type { BiljkaUpozenjeRow } from '@/types/biljka';
+import type { BiljkaUpozorenjeRow } from '@/types/biljka';
 
 const OZBILJNOST_STILOVI: Record<OzbiljnostUpozorenja, {
   bg: string;
@@ -34,7 +34,7 @@ const OZBILJNOST_STILOVI: Record<OzbiljnostUpozorenja, {
 };
 
 interface UpozorenjeItemProps {
-  upozorenje: BiljkaUpozenjeRow;
+  upozorenje: BiljkaUpozorenjeRow;
 }
 
 export function UpozorenjeItem({ upozorenje }: UpozorenjeItemProps) {
