@@ -7,7 +7,7 @@ i18n.use(initReactI18next).init({
   resources: { sr: { translation: sr }, en: { translation: en } },
   lng: 'sr',
   fallbackLng: 'sr',
-  interpolation: { escapeValue: false },
+  interpolation: { escapeValue: false, prefix: '{', suffix: '}' },
 });
 
 export default i18n;

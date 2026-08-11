@@ -1,0 +1,17 @@
+{
+  "cli": { "version": ">= 14.0.0" },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://wttgvqoubnsbxohiapcm.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_publishable_6TOlNFeRZ0-dus2PIGIcyw_J5gJ-CcZ",
+        "EXPO_PUBLIC_VERCEL_API_URL": "https://hakaton-mihailo-radulovics-projects.vercel.app"
+      }
+    },
+    "production": {}
+  }
+}

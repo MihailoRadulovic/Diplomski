@@ -1,81 +1,114 @@
 # Lekovito Bilje — React Native (Expo)
 
-Mobilna verzija web aplikacije za prepoznavanje i pretragu lekovitog bilja.
-Web verzija se nalazi na `C:\Users\Korisnik\Desktop\Sajt\Hakaton`.
-Expo projekat se kreira u ovom folderu (`C:\Users\Korisnik\Desktop\Faks\Diplomski`).
+Mobilna aplikacija za prepoznavanje i pretragu lekovitog bilja.
+Web referenca se nalazi na `C:\Users\Korisnik\Desktop\Sajt\Hakaton` — **nikad ne menjati**, samo čitati radi razumevanja logike.
 
 ---
 
-## Workflow — kako raditi na ovom projektu
+## Tech stack
 
-### Pre svake faze
-1. Pročitaj `plan.md` — arhitektura, tech stack, dizajn sistem, folder struktura
-2. Pročitaj odgovarajući `faze/faza-XX.md` — tačne instrukcije, kod i checklist za tu fazu
-3. Implementiraj redom — ne preskači korake, ne dodaj ništa što nije eksplicitno u fazi
+| | |
+|---|---|
+| Framework | Expo SDK 54, React Native 0.81.5, React 19.1.0 |
+| Navigacija | Expo Router 6 |
+| Stilizovanje | NativeWind 4 + Tailwind CSS 3 |
+| Backend | Supabase (direktni pozivi, bez API sloja) |
+| State | Zustand |
+| Data fetching | TanStack Query v5 |
+| i18n | i18next + react-i18next (sr/en, fajlovi u `messages/`) |
+| Fontovi | `@expo-google-fonts/playfair-display` |
 
-### Tokom implementacije
-- Sekcija **"Web referenca"** u svakoj fazi = fajlovi iz web projekta koji se portuju
-- Sekcija **"Sta izostaviti"** u svakoj fazi = striktno poštovati, bez izuzetaka
-- Sekcija **"Proveri pre commita"** = sve stavke moraju biti ispunjene pre commita
+---
 
-### Pre commita svake faze
-```bash
-npx tsc --noEmit      # mora proći bez ijedne greške
-npx expo start        # mora se pokrenuti bez crasha
+## Folder struktura
+
+```
+app/
+  _layout.tsx               # root layout
+  (tabs)/                   # tab navigacija
+    _layout.tsx
+    index.tsx               # pocetna
+    pretraga.tsx
+    prepoznavanje.tsx
+    omiljene.tsx
+    podesavanja.tsx
+  (auth)/                   # auth ekrani
+    _layout.tsx
+    prijava.tsx
+    registracija.tsx
+  biljka/[slug].tsx          # detalji biljke
+
+components/
+  biljke/                   # BiljkaKartica, OmiljenaToggle, BiljkaDetalji, UpozorenjaSekcija
+  pocetna/                  # PocetnaHero, BiljkaDanaSekcija, IznenadimeDugme, NedavnoPregledano, PopularniFilteri
+  pretraga/                 # PretragaInput, PretragaFilteri, PretragaRezultati
+  prepoznavanje/            # PrepoznavanjeLoader, PrepoznavanjeRezultat
+  ui/                       # Badge, Disclaimer, Skeleton, Spinner, Toast
+  empty/                    # EmptyState
+  error/                    # ErrorFallback
+
+hooks/                      # useAuth, useBiljka, useBiljkaDana, useImagePicker,
+                            # useNedavnoPregledano, useOmiljene, usePrepoznavanje,
+                            # usePretraga, useT, useTheme
+
+stores/                     # jezikaStore, pretragaStore, temaStore (Zustand)
+
+lib/
+  constants/fontovi.ts      # font konstante
+  constants/tagovi.ts
+  supabase/client.ts        # Supabase klijent
+  utils/                    # guestOmiljene, nedavnoPregledano
+  validations/              # upload.schema.ts
+
+types/                      # biljka.ts, database.ts
+messages/                   # sr.json, en.json
+i18n/index.ts
 ```
 
 ---
 
-## Web projekat — samo referenca
+## Env varijable (obavezne za pokretanje)
 
-Web projekat (`C:\Users\Korisnik\Desktop\Sajt\Hakaton`) se **nikad ne menja**. Služi isključivo kao referenca — čitati radi razumevanja logike, ali nikad pisati, editovati niti commitovati u njemu.
+```
+EXPO_PUBLIC_SUPABASE_URL=
+EXPO_PUBLIC_SUPABASE_ANON_KEY=
+EXPO_PUBLIC_VERCEL_API_URL=
+```
 
 ---
 
-## Ključna pravila (bez izuzetaka)
+## Ključna pravila
 
-- **Nema sopstvenih odluka** — sve arhitekturalne odluke su definisane u `plan.md` i faza fajlovima
-- **Nema preskakanja faza** — svaka faza se commituje pre nego što krene sledeća
-- **Nema improvizacije** — ako nešto nije pomenuto u fazi, ne dodaje se
-- **Typecheck je obavezan** — ni jedan commit ne ide bez čistog `npx tsc --noEmit`
-- **Dark mode uvek odmah** — svaka komponenta dobija `dark:` varijante u istoj fazi kada se piše, nikad naknadno
-- **Font konstante** — uvek koristiti `SERIF_BOLD`, `SERIF_ITALIC`, `SERIF_REGULAR` iz `lib/constants/fontovi.ts`, nikad hardkodovani string `'Georgia'`
+- **Font konstante** — uvek koristiti `SERIF_BOLD`, `SERIF_ITALIC`, `SERIF_REGULAR` iz `lib/constants/fontovi.ts`, nikad hardkodovani string `'Georgia'` ili bilo koji drugi
+- **Dark mode uvek odmah** — svaka komponenta dobija `dark:` NativeWind varijante u istom trenutku kada se piše, nikad naknadno
 - **Auth rute** — uvek `/(auth)/prijava` i `/(auth)/registracija`, nikad `/prijava`
 - **Filteri u pretrazi** — filter ide kroz `delovanje.ilike('%vrednost%')` (kolona `tagovi` postoji ali se ne koristi za filtriranje)
+- **Nema improvizacije** — ne dodavati ništa što nije eksplicitno traženo
 
 ---
 
-## Struktura dokumentacije
+## Workflow
 
-| Fajl | Svrha |
-|------|-------|
-| `CLAUDE.md` | Workflow i pravila rada (ovaj fajl) |
-| `plan.md` | Arhitekturalni pregled — tech stack, folder struktura, dizajn sistem, šta se portuje |
-| `faze/faza-01.md` do `faza-18.md` | Detaljna implementacija po fazama sa kodom i checklistom |
+### Pre pokretanja
+```bash
+npx expo start        # skenirati QR u Expo Go (iOS, SDK 54)
+```
+
+### Pre svakog commita
+```bash
+npx tsc --noEmit      # mora proći bez ijedne greške
+```
+
+### Commit poruke
+Srpski jezik, konvencionalni format:
+```
+feat: dodavanje omiljenih za gosta
+fix: dark mode na ekranu pretrage
+```
 
 ---
 
-## Redosled faza
+## EAS Build (za produkciju)
 
-Faze se implementiraju striktno redom 1 → 18.
-
-| # | Opis | Fajl |
-|---|------|------|
-| 1 | Inicijalizacija projekta | faze/faza-01.md |
-| 2 | Konfiguracija — tipovi, utils, Supabase klijent | faze/faza-02.md |
-| 3 | I18n + Zustand stores | faze/faza-03.md |
-| 4 | Expo Router navigacija | faze/faza-04.md |
-| 5 | UI primitive komponente + font konstante | faze/faza-05.md |
-| 6 | Hookovi — data layer (Supabase direktno) | faze/faza-06.md |
-| 7 | BiljkaKartica + OmiljenaToggle | faze/faza-07.md |
-| 8 | Pocetna stranica | faze/faza-08.md |
-| 9 | Pretraga | faze/faza-09.md |
-| 10 | Detalji biljke | faze/faza-10.md |
-| 11 | Prepoznavanje biljke | faze/faza-11.md |
-| 12 | Omiljene biljke | faze/faza-12.md |
-| 13 | Auth ekrani | faze/faza-13.md |
-| 14 | Podesavanja ekran | faze/faza-14.md |
-| 15 | Dark mode finalizacija | faze/faza-15.md |
-| 16 | Accessibility i UX polish | faze/faza-16.md |
-| 17 | Fontovi i vizuelni detalji | faze/faza-17.md |
-| 18 | Testiranje i EAS build | faze/faza-18.md |
+Konfiguracija je u `eas.json`. Pokreće se sa `eas build` (zahteva Expo account).
+Za razvoj i testiranje koristi se isključivo Expo Go.
