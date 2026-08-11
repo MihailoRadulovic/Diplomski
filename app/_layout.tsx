@@ -3,37 +3,52 @@ import { Stack } from 'expo-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { useFonts, PlayfairDisplay_700Bold, PlayfairDisplay_400Regular, PlayfairDisplay_400Regular_Italic } from '@expo-google-fonts/playfair-display';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import '@/i18n'; // inicijalizacija i18n
-import '@/global.css';
 import { useTheme } from '@/hooks/useTheme';
+import '@/i18n';
+import '@/global.css';
 
-// Poziva se sinhrono — drzi splash dok auth init ne zavrsi
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient();
 
-export default function RootLayout() {
+function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { aktivnaTema } = useTheme();
 
+  return (
+    <>
+      <StatusBar style={aktivnaTema === 'dark' ? 'light' : 'dark'} />
+      {children}
+    </>
+  );
+}
+
+export default function RootLayout() {
+  const [fontsLoaded, fontError] = useFonts({
+    'PlayfairDisplay-Bold': PlayfairDisplay_700Bold,
+    'PlayfairDisplay-Regular': PlayfairDisplay_400Regular,
+    'PlayfairDisplay-Italic': PlayfairDisplay_400Regular_Italic,
+  });
+
   useEffect(() => {
-    // Splash se sakriva tek kada je sve spremno.
-    // Auth init i font load se dodaju ovde u Fazi 17 kada se ucitavaju fontovi.
-    SplashScreen.hideAsync();
-  }, []);
+    if (fontsLoaded || fontError) SplashScreen.hideAsync();
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) return null;
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <QueryClientProvider client={queryClient}>
-          <StatusBar style={aktivnaTema === 'dark' ? 'light' : 'dark'} />
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="biljka/[slug]" options={{ headerShown: true, title: '' }} />
-            <Stack.Screen name="(auth)/prijava" options={{ presentation: 'modal', title: 'Prijava' }} />
-            <Stack.Screen name="(auth)/registracija" options={{ presentation: 'modal', title: 'Registracija' }} />
-          </Stack>
+          <ThemeProvider>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false, headerBackTitle: '' }} />
+              <Stack.Screen name="biljka/[slug]" options={{ headerShown: true, title: '', headerBackButtonDisplayMode: 'minimal' }} />
+              <Stack.Screen name="(auth)" options={{ presentation: 'modal', headerShown: false }} />
+            </Stack>
+          </ThemeProvider>
         </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

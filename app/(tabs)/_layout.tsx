@@ -19,7 +19,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Pocetna',
+          title: 'Početna',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'home' : 'home-outline'} size={24} color={color} />
           ),
@@ -55,7 +55,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="podesavanja"
         options={{
-          title: 'Podesavanja',
+          title: 'Podešavanja',
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'settings' : 'settings-outline'} size={24} color={color} />
           ),

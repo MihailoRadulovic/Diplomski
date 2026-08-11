@@ -2,8 +2,12 @@ import { Stack } from 'expo-router';
 import { Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
+import { useColorScheme } from 'nativewind';
 
 export default function AuthLayout() {
+  const { colorScheme } = useColorScheme();
+  const iconColor = colorScheme === 'dark' ? '#C8E6A0' : '#27500A';
+
   return (
     <Stack>
       <Stack.Screen
@@ -13,7 +17,7 @@ export default function AuthLayout() {
           headerTransparent: true,
           headerRight: () => (
             <Pressable onPress={() => router.back()} accessibilityLabel="Zatvori">
-              <Ionicons name="close" size={24} color="#27500A" />
+              <Ionicons name="close" size={24} color={iconColor} />
             </Pressable>
           ),
         }}
@@ -25,7 +29,7 @@ export default function AuthLayout() {
           headerTransparent: true,
           headerRight: () => (
             <Pressable onPress={() => router.back()} accessibilityLabel="Zatvori">
-              <Ionicons name="close" size={24} color="#27500A" />
+              <Ionicons name="close" size={24} color={iconColor} />
             </Pressable>
           ),
         }}
