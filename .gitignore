@@ -49,6 +49,7 @@ yarn-error.*
 .idea/
 
 # AI tools
+CLAUDE.md
 .claude/
 .cursor/
 .cursorrules
