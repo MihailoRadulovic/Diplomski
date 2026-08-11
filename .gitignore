@@ -40,3 +40,18 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# logs
+*.log
+
+# editors
+.vscode/
+.idea/
+
+# AI tools
+.claude/
+.cursor/
+.cursorrules
+.aider*
+.codeium/
+.copilot/
