@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/Badge/Badge';
 import { SERIF_BOLD, SERIF_ITALIC, SERIF_REGULAR } from '@/lib/constants/fontovi';
 import { TAG_LABELE } from '@/lib/constants/tagovi';
 import { useJezikaStore } from '@/stores/jezikaStore';
+import { useT } from '@/hooks/useT';
 import type { BiljkaSaRelacijama } from '@/types/biljka';
 
 interface BiljkaGlavnaInfoProps {
@@ -14,6 +15,7 @@ interface BiljkaGlavnaInfoProps {
 
 export function BiljkaGlavnaInfo({ biljka, onKopiranje }: BiljkaGlavnaInfoProps) {
   const { jezik } = useJezikaStore();
+  const t = useT('biljke');
 
   const kopiraj = async () => {
     await Clipboard.setStringAsync(biljka.latinski_naziv);
@@ -48,7 +50,7 @@ export function BiljkaGlavnaInfo({ biljka, onKopiranje }: BiljkaGlavnaInfoProps)
       {/* Porodica */}
       {biljka.porodica ? (
         <Text className="text-sm text-tekst-blagi dark:text-zinc-500 mb-3">
-          Porodica: {biljka.porodica}
+          {t('porodica')}: {biljka.porodica}
         </Text>
       ) : null}
 

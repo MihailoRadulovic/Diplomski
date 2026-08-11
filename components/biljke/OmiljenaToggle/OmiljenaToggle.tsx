@@ -8,7 +8,7 @@ interface OmiljenaToggleProps {
 }
 
 export function OmiljenaToggle({ biljkaId, slug }: OmiljenaToggleProps) {
-  const { jeOmiljena, toggleOmiljena, toggleGuestOmiljena, jeGost, omiljeneId } = useOmiljene();
+  const { jeOmiljena, toggleOmiljena, toggleGuestOmiljena, jeGost } = useOmiljene();
 
   const aktivan = jeOmiljena(biljkaId);
 
@@ -16,8 +16,7 @@ export function OmiljenaToggle({ biljkaId, slug }: OmiljenaToggleProps) {
     if (jeGost) {
       toggleGuestOmiljena(biljkaId, slug);
     } else {
-      const id = omiljeneId(biljkaId);
-      if (id) toggleOmiljena(id, biljkaId);
+      toggleOmiljena(biljkaId);
     }
   };
 
@@ -28,6 +27,7 @@ export function OmiljenaToggle({ biljkaId, slug }: OmiljenaToggleProps) {
       accessibilityLabel={aktivan ? 'Ukloni iz omiljenih' : 'Dodaj u omiljene'}
       accessibilityState={{ checked: aktivan }}
       hitSlop={8}
+      style={{ width: 36, height: 36, alignItems: 'center', justifyContent: 'center' }}
     >
       <Ionicons
         name={aktivan ? 'heart' : 'heart-outline'}

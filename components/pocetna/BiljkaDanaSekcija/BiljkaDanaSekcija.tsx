@@ -96,9 +96,9 @@ export function BiljkaDanaSekcija() {
               </Text>
             )}
 
-            <View className="mt-3 self-start px-4 py-2 rounded-xl bg-[#639922]">
+            <View className="flex-row items-center gap-1 mt-3">
               <Text
-                className="text-white text-sm font-semibold"
+                className="text-sm text-[#639922] font-medium"
                 style={{ fontFamily: SERIF_BOLD }}
               >
                 {t('pogledaj_detalje')}

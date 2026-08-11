@@ -41,10 +41,10 @@ export const BiljkaKartica = memo(function BiljkaKartica({
       </View>
 
       {/* Tekst i toggle */}
-      <View className="p-3 flex-row items-start justify-between">
+      <View className="p-3 flex-row items-start justify-between" style={{ minHeight: 96 }}>
         <View className="flex-1 mr-2">
           <Text
-            className="font-bold text-zinc-900 dark:text-white"
+            className="font-bold text-tekst-primarni dark:text-white"
             style={{ fontFamily: SERIF_BOLD }}
             numberOfLines={2}
           >
@@ -55,16 +55,14 @@ export const BiljkaKartica = memo(function BiljkaKartica({
             style={{ fontFamily: SERIF_ITALIC }}
             numberOfLines={1}
           >
-            {latinski_naziv}
+            {latinski_naziv ?? ''}
           </Text>
-          {porodica && (
-            <Text
-              className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5"
-              numberOfLines={1}
-            >
-              {porodica}
-            </Text>
-          )}
+          <Text
+            className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5"
+            numberOfLines={1}
+          >
+            {porodica ?? ''}
+          </Text>
         </View>
 
         {onOmiljenaToggle && (

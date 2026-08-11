@@ -3,8 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
 
-export interface ErrorFallbackProps {
-  error?: Error;
+interface ErrorFallbackProps {
   onReset?: () => void;
 }
 

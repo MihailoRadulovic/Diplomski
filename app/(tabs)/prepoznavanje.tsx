@@ -2,24 +2,27 @@ import { useState } from 'react';
 import { View, Text, Pressable, ScrollView } from 'react-native';
 import { Image } from 'expo-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
 import { useImagePicker } from '@/hooks/useImagePicker';
 import { usePrepoznavanje } from '@/hooks/usePrepoznavanje';
 import { PrepoznavanjeLoader } from '@/components/prepoznavanje/PrepoznavanjeLoader/PrepoznavanjeLoader';
 import { PrepoznavanjeRezultat } from '@/components/prepoznavanje/PrepoznavanjeRezultat/PrepoznavanjeRezultat';
+import { useT } from '@/hooks/useT';
 import type { UploadOrgan } from '@/lib/validations/upload.schema';
 import type { ImagePickerAsset } from 'expo-image-picker';
 
-const ORGANI: { vrednost: UploadOrgan; label: string }[] = [
-  { vrednost: 'leaf',   label: 'List' },
-  { vrednost: 'flower', label: 'Cvet' },
-  { vrednost: 'fruit',  label: 'Plod' },
-  { vrednost: 'bark',   label: 'Kora' },
-  { vrednost: 'habit',  label: 'Cela biljka' },
-  { vrednost: 'other',  label: 'Ostalo' },
+const ORGANI: { vrednost: UploadOrgan; kljuc: string }[] = [
+  { vrednost: 'leaf',   kljuc: 'organ_list' },
+  { vrednost: 'flower', kljuc: 'organ_cvet' },
+  { vrednost: 'fruit',  kljuc: 'organ_plod' },
+  { vrednost: 'bark',   kljuc: 'organ_kora' },
+  { vrednost: 'habit',  kljuc: 'organ_cela' },
+  { vrednost: 'other',  kljuc: 'organ_ostalo' },
 ];
 
 export default function PrepoznavanjeTab() {
+  const t = useT('prepoznavanje');
   const [izabranaSlika, setIzabranaSlika] = useState<ImagePickerAsset | null>(null);
   const [organ, setOrgan] = useState<UploadOrgan>('leaf');
   const { otvoriKameru, otvoriGaleriju } = useImagePicker();
@@ -58,7 +61,7 @@ export default function PrepoznavanjeTab() {
           className="text-3xl font-semibold text-center mt-6 mb-6 text-zinc-800 dark:text-zinc-100"
           style={{ fontFamily: SERIF_BOLD }}
         >
-          Prepoznaj biljku
+          {t('naslov')}
         </Text>
 
         {/* Loading */}
@@ -89,21 +92,21 @@ export default function PrepoznavanjeTab() {
                 <Pressable
                   onPress={handleKamera}
                   className="flex-1 items-center py-8 rounded-2xl border-2 border-[#639922] bg-[#EAF3DE] dark:bg-[#1A2E0F] dark:border-[#4A7A1A]"
-                  accessibilityLabel="Slikaj biljku kamerom"
+                  accessibilityLabel={t('slikaj')}
                   accessibilityHint="Otvara kameru"
                   accessibilityRole="button"
                 >
-                  <Text className="text-3xl mb-2">📷</Text>
-                  <Text className="font-semibold text-[#27500A] dark:text-[#C8E6A0]">Slikaj</Text>
+                  <Ionicons name="camera" size={32} color="#639922" style={{ marginBottom: 8 }} />
+                  <Text className="font-semibold text-[#27500A] dark:text-[#C8E6A0]">{t('slikaj')}</Text>
                 </Pressable>
                 <Pressable
                   onPress={handleGalerija}
                   className="flex-1 items-center py-8 rounded-2xl border-2 border-[#639922] bg-[#EAF3DE] dark:bg-[#1A2E0F] dark:border-[#4A7A1A]"
-                  accessibilityLabel="Izaberi sliku iz galerije"
+                  accessibilityLabel={t('otpremi')}
                   accessibilityRole="button"
                 >
-                  <Text className="text-3xl mb-2">🖼️</Text>
-                  <Text className="font-semibold text-[#27500A] dark:text-[#C8E6A0]">Galerija</Text>
+                  <Ionicons name="images" size={32} color="#639922" style={{ marginBottom: 8 }} />
+                  <Text className="font-semibold text-[#27500A] dark:text-[#C8E6A0]">{t('otpremi')}</Text>
                 </Pressable>
               </View>
             )}
@@ -112,10 +115,10 @@ export default function PrepoznavanjeTab() {
             {izabranaSlika && (
               <View className="mb-4">
                 <Text className="text-sm font-medium text-center mb-3 text-zinc-700 dark:text-zinc-300">
-                  Koji deo biljke je na slici?
+                  {t('organ_naslov')}
                 </Text>
                 <View className="flex-row flex-wrap justify-center gap-2">
-                  {ORGANI.map(({ vrednost, label }) => (
+                  {ORGANI.map(({ vrednost, kljuc }) => (
                     <Pressable
                       key={vrednost}
                       onPress={() => setOrgan(vrednost)}
@@ -125,7 +128,7 @@ export default function PrepoznavanjeTab() {
                           : 'border-zinc-300 dark:border-zinc-600'
                       }`}
                       accessibilityRole="radio"
-                      accessibilityLabel={label}
+                      accessibilityLabel={t(kljuc)}
                       accessibilityState={{ checked: organ === vrednost }}
                     >
                       <Text
@@ -135,7 +138,7 @@ export default function PrepoznavanjeTab() {
                             : 'text-zinc-600 dark:text-zinc-300'
                         }
                       >
-                        {label}
+                        {t(kljuc)}
                       </Text>
                     </Pressable>
                   ))}
@@ -157,17 +160,17 @@ export default function PrepoznavanjeTab() {
                   onPress={handlePrepoznaj}
                   className="flex-1 py-3 rounded-xl bg-[#639922] items-center"
                   accessibilityRole="button"
-                  accessibilityLabel="Prepoznaj biljku"
+                  accessibilityLabel={t('prepoznaj')}
                 >
-                  <Text className="text-white font-semibold">Prepoznaj</Text>
+                  <Text className="text-white font-semibold">{t('prepoznaj')}</Text>
                 </Pressable>
                 <Pressable
                   onPress={handleNova}
                   className="flex-1 py-3 rounded-xl border border-zinc-300 dark:border-zinc-600 items-center"
                   accessibilityRole="button"
-                  accessibilityLabel="Izaberi novu fotografiju"
+                  accessibilityLabel={t('nova_fotografija')}
                 >
-                  <Text className="text-zinc-600 dark:text-zinc-300 font-semibold">Nova fotografija</Text>
+                  <Text className="text-zinc-600 dark:text-zinc-300 font-semibold">{t('nova_fotografija')}</Text>
                 </Pressable>
               </View>
             )}

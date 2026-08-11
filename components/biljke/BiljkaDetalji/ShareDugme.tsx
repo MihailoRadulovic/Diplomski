@@ -1,5 +1,6 @@
 import { Pressable, Text, Share } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useT } from '@/hooks/useT';
 
 interface ShareDugmeProps {
   naziv: string;
@@ -7,6 +8,7 @@ interface ShareDugmeProps {
 }
 
 export function ShareDugme({ naziv, opis }: ShareDugmeProps) {
+  const t = useT('zajednicko');
   const handleShare = async () => {
     await Share.share({
       title: naziv,
@@ -23,7 +25,7 @@ export function ShareDugme({ naziv, opis }: ShareDugmeProps) {
     >
       <Ionicons name="share-outline" size={18} color="#639922" />
       <Text className="text-sm font-medium text-zelena-primarna dark:text-zelena-svetla">
-        Podeli
+        {t('podeli')}
       </Text>
     </Pressable>
   );

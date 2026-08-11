@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { View, Text, TextInput, Pressable, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
 import { supabase } from '@/lib/supabase/client';
+import { useT } from '@/hooks/useT';
 
 export default function RegistracijaEkran() {
+  const t = useT('auth');
   const [punoIme, setPunoIme] = useState('');
   const [email, setEmail] = useState('');
   const [lozinka, setLozinka] = useState('');
@@ -16,7 +19,7 @@ export default function RegistracijaEkran() {
 
   const handleRegistracija = async () => {
     if (!punoIme || !email || !lozinka) {
-      setGreska('Sva polja su obavezna.');
+      setGreska(t('sva_polja_obavezna'));
       return;
     }
     setGreska(null);
@@ -30,12 +33,12 @@ export default function RegistracijaEkran() {
         },
       });
       if (error) {
-        setGreska('Greška pri registraciji. Pokušaj ponovo.');
+        setGreska(t('greska_registracije'));
         return;
       }
       setUspesno(true);
     } catch {
-      setGreska('Greška pri registraciji. Pokušaj ponovo.');
+      setGreska(t('greska_registracije'));
     } finally {
       setIsPending(false);
     }
@@ -46,13 +49,13 @@ export default function RegistracijaEkran() {
       <SafeAreaView className="flex-1 bg-white dark:bg-[#0F1A08] items-center justify-center px-6">
         <Text className="text-4xl mb-4">✉️</Text>
         <Text className="text-xl font-semibold text-center mb-2 text-tekst-primarni dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
-          Proverite email
+          {t('proverite_email_naslov')}
         </Text>
         <Text className="text-zinc-500 dark:text-zinc-400 text-center mb-6">
-          Poslali smo vam link za potvrdu na {email}
+          {t('proverite_email_opis', { email })}
         </Text>
         <Pressable onPress={() => router.replace('/(auth)/prijava')}>
-          <Text className="text-[#639922] font-medium">Imate nalog? Prijavite se</Text>
+          <Text className="text-[#639922] font-medium">{t('imate_nalog')} {t('prijavi_se')}</Text>
         </Pressable>
       </SafeAreaView>
     );
@@ -74,7 +77,7 @@ export default function RegistracijaEkran() {
             <Text className="text-3xl text-tekst-primarni dark:text-white" style={{ fontFamily: SERIF_BOLD }}>
               Lekovito Bilje
             </Text>
-            <Text className="mt-2 text-base text-zinc-500 dark:text-zinc-400">Registrujte se</Text>
+            <Text className="mt-2 text-base text-zinc-500 dark:text-zinc-400">{t('registrujte_se')}</Text>
           </View>
 
           {greska && (
@@ -85,22 +88,22 @@ export default function RegistracijaEkran() {
 
           {/* Puno ime */}
           <View className="mb-5">
-            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">Puno ime</Text>
+            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">{t('puno_ime')}</Text>
             <TextInput
               value={punoIme}
               onChangeText={setPunoIme}
               autoComplete="name"
               returnKeyType="next"
-              placeholder="Ime i prezime"
+              placeholder={t('puno_ime')}
               placeholderTextColor="#9CA3AF"
               className="border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2.5 bg-white dark:bg-zinc-900 text-tekst-primarni dark:text-white"
-              accessibilityLabel="Puno ime"
+              accessibilityLabel={t('puno_ime')}
             />
           </View>
 
           {/* Email */}
           <View className="mb-5">
-            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">Email</Text>
+            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">{t('email')}</Text>
             <TextInput
               value={email}
               onChangeText={setEmail}
@@ -111,13 +114,13 @@ export default function RegistracijaEkran() {
               placeholder="email@primer.com"
               placeholderTextColor="#9CA3AF"
               className="border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2.5 bg-white dark:bg-zinc-900 text-tekst-primarni dark:text-white"
-              accessibilityLabel="Email adresa"
+              accessibilityLabel={t('email')}
             />
           </View>
 
           {/* Lozinka */}
           <View className="mb-5">
-            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">Lozinka</Text>
+            <Text className="text-sm font-medium mb-1 text-tekst-primarni dark:text-white">{t('lozinka')}</Text>
             <View className="relative">
               <TextInput
                 value={lozinka}
@@ -126,19 +129,21 @@ export default function RegistracijaEkran() {
                 autoComplete="new-password"
                 returnKeyType="done"
                 onSubmitEditing={handleRegistracija}
-                placeholder="Lozinka"
+                placeholder={t('lozinka')}
                 placeholderTextColor="#9CA3AF"
                 className="border border-zinc-300 dark:border-zinc-700 rounded-lg px-3 py-2.5 pr-12 bg-white dark:bg-zinc-900 text-tekst-primarni dark:text-white"
-                accessibilityLabel="Lozinka"
+                accessibilityLabel={t('lozinka')}
               />
               <Pressable
                 onPress={() => setPrikaziLozinku((p) => !p)}
-                className="absolute right-3 top-2.5"
-                accessibilityLabel={prikaziLozinku ? 'Sakrij lozinku' : 'Prikazi lozinku'}
+                className="absolute right-3 top-0 bottom-0 justify-center"
+                accessibilityLabel={prikaziLozinku ? t('sakrij_lozinku') : t('prikazi_lozinku')}
               >
-                <Text className="text-zinc-400 dark:text-zinc-500 text-sm">
-                  {prikaziLozinku ? 'Sakrij' : 'Prikaži'}
-                </Text>
+                <Ionicons
+                  name={prikaziLozinku ? 'eye-off-outline' : 'eye-outline'}
+                  size={20}
+                  color="#9CA3AF"
+                />
               </Pressable>
             </View>
           </View>
@@ -150,20 +155,20 @@ export default function RegistracijaEkran() {
             className="w-full py-3 rounded-lg bg-[#639922] items-center mb-6"
             style={{ opacity: isPending ? 0.5 : 1 }}
             accessibilityRole="button"
-            accessibilityLabel="Registrujte se"
+            accessibilityLabel={t('registrujte_se')}
             accessibilityState={{ disabled: isPending }}
           >
             {isPending
               ? <ActivityIndicator color="white" />
-              : <Text className="text-white font-semibold">Registrujte se</Text>
+              : <Text className="text-white font-semibold">{t('registrujte_se')}</Text>
             }
           </Pressable>
 
           {/* Link ka prijavi */}
           <Text className="text-center text-sm text-zinc-500 dark:text-zinc-400">
-            Imate nalog?{' '}
+            {t('imate_nalog')}{' '}
             <Text className="font-medium text-[#639922]" onPress={() => router.push('/(auth)/prijava')}>
-              Prijavite se
+              {t('prijavi_se')}
             </Text>
           </Text>
         </ScrollView>

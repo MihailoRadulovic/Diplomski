@@ -1,5 +1,6 @@
 import { View, Text } from 'react-native';
 import { SERIF_BOLD, SERIF_REGULAR } from '@/lib/constants/fontovi';
+import { useT } from '@/hooks/useT';
 import type { BiljkaUpotrebaRow } from '@/types/biljka';
 
 interface BiljkaKoristiSeProps {
@@ -7,6 +8,7 @@ interface BiljkaKoristiSeProps {
 }
 
 export function BiljkaKoristiSe({ upotrebe }: BiljkaKoristiSeProps) {
+  const t = useT('biljke');
   const grupisano = upotrebe.reduce<Record<string, BiljkaUpotrebaRow[]>>((acc, u) => {
     if (!acc[u.deo_biljke]) acc[u.deo_biljke] = [];
     acc[u.deo_biljke].push(u);
@@ -19,7 +21,7 @@ export function BiljkaKoristiSe({ upotrebe }: BiljkaKoristiSeProps) {
         className="text-lg text-tekst-primarni dark:text-white mb-3"
         style={{ fontFamily: SERIF_BOLD }}
       >
-        Kako se koristi
+        {t('kako_se_koristi')}
       </Text>
 
       {Object.entries(grupisano).map(([deo, stavke]) => (

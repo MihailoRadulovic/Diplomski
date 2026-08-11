@@ -13,7 +13,7 @@ export function FilterChip({ label, aktivan, onPress }: FilterChipProps) {
       className={`mr-2 px-4 py-1.5 rounded-full border ${
         aktivan
           ? 'bg-zelena-primarna border-zelena-primarna'
-          : 'bg-transparent border-zinc-300 dark:border-zinc-600'
+          : 'bg-zelena-svetla border-ivica dark:bg-zinc-800 dark:border-zinc-700'
       }`}
       accessibilityRole="checkbox"
       accessibilityLabel={label}
@@ -21,8 +21,9 @@ export function FilterChip({ label, aktivan, onPress }: FilterChipProps) {
     >
       <Text
         className={`text-sm font-medium ${
-          aktivan ? 'text-white' : 'text-tekst-primarni dark:text-zinc-300'
+          aktivan ? 'text-white' : 'text-zelena-tamna dark:text-zinc-300'
         }`}
+        style={{ includeFontPadding: false }}
       >
         {label}
       </Text>

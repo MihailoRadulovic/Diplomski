@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import { Animated, Pressable, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-export type ToastVariant = 'success' | 'error' | 'warning' | 'info';
+type ToastVariant = 'success' | 'error' | 'warning' | 'info';
 
-export interface ToastProps {
+interface ToastProps {
   message: string;
   variant?: ToastVariant;
   onClose: () => void;
@@ -21,6 +21,8 @@ const variantStyles: Record<ToastVariant, { bg: string; icon: keyof typeof Ionic
 export function Toast({ message, variant = 'info', onClose, duration = 3000 }: ToastProps) {
   const translateY = useRef(new Animated.Value(100)).current;
   const opacity = useRef(new Animated.Value(0)).current;
+  const onCloseRef = useRef(onClose);
+  useEffect(() => { onCloseRef.current = onClose; });
 
   useEffect(() => {
     Animated.parallel([
@@ -32,11 +34,11 @@ export function Toast({ message, variant = 'info', onClose, duration = 3000 }: T
       Animated.parallel([
         Animated.timing(translateY, { toValue: 100, duration: 200, useNativeDriver: true }),
         Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }),
-      ]).start(onClose);
+      ]).start(() => onCloseRef.current());
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [duration, onClose, opacity, translateY]);
+  }, [duration, opacity, translateY]);
 
   const { bg, icon } = variantStyles[variant];
 

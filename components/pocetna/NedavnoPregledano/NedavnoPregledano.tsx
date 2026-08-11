@@ -19,7 +19,7 @@ export function NedavnoPregledano() {
   if (stavke.length === 0) return null;
 
   return (
-    <View className="px-4 mb-6">
+    <View className="px-4 mt-2 mb-6">
       <Text
         className="text-xl font-semibold text-zinc-900 dark:text-white mb-3"
         style={{ fontFamily: SERIF_BOLD }}

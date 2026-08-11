@@ -18,7 +18,7 @@ export function PretragaInput({ value, onSearch }: PretragaInputProps) {
   };
 
   return (
-    <View className="flex-row items-center border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 mb-3 bg-white dark:bg-zinc-900">
+    <View className="flex-row items-center border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 mb-2 bg-white dark:bg-zinc-900">
       <Ionicons name="search-outline" size={18} color="#9CA3AF" style={{ marginRight: 6 }} />
       <TextInput
         defaultValue={value}

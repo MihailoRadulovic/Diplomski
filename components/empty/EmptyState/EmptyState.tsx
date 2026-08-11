@@ -2,7 +2,7 @@ import { View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
 
-export interface EmptyStateProps {
+interface EmptyStateProps {
   title: string;
   description?: string;
   action?: React.ReactNode;

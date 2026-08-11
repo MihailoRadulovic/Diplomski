@@ -7,8 +7,8 @@ export function Skeleton({ className = '' }: { className?: string }) {
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(anim, { toValue: 1, duration: 800, useNativeDriver: true }),
-        Animated.timing(anim, { toValue: 0, duration: 800, useNativeDriver: true }),
+        Animated.timing(anim, { toValue: 1, duration: 800, useNativeDriver: false }),
+        Animated.timing(anim, { toValue: 0, duration: 800, useNativeDriver: false }),
       ])
     ).start();
   }, [anim]);
