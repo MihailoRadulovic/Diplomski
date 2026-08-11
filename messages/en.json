@@ -31,7 +31,8 @@
   },
   "pretraga": {
     "nema_rezultata": "No results for your search",
-    "nema_rezultata_opis": "Try different keywords or clear the filters"
+    "nema_rezultata_opis": "Try different keywords or clear the filters",
+    "ukupno_rezultata": "{ukupno} herbs"
   },
   "prepoznavanje": {
     "naslov": "Identify a Plant",

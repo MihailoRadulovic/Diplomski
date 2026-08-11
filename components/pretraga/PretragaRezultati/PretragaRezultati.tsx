@@ -1,9 +1,10 @@
 import { useRef, useEffect } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, RefreshControl } from 'react-native';
 import { FlashList, type FlashListRef } from '@shopify/flash-list';
 import { Ionicons } from '@expo/vector-icons';
 import { BiljkaKartica } from '@/components/biljke/BiljkaKartica/BiljkaKartica';
 import { EmptyState } from '@/components/empty/EmptyState/EmptyState';
+import { ErrorFallback } from '@/components/error/ErrorBoundary/ErrorFallback';
 import { Skeleton } from '@/components/ui/Skeleton/Skeleton';
 import { Spinner } from '@/components/ui/Spinner/Spinner';
 import { useT } from '@/hooks/useT';
@@ -21,9 +22,12 @@ interface PretragaRezultatiProps {
   biljke: BiljkaPreviewItem[];
   isLoading: boolean;
   isFetching: boolean;
+  isError: boolean;
   strana: number;
   ukupno_strana: number;
   onStranaChange: (strana: number) => void;
+  refreshing: boolean;
+  onRefresh: () => void;
 }
 
 function getPages(current: number, total: number): (number | '...')[] {
@@ -112,9 +116,12 @@ export function PretragaRezultati({
   biljke,
   isLoading,
   isFetching,
+  isError,
   strana,
   ukupno_strana,
   onStranaChange,
+  refreshing,
+  onRefresh,
 }: PretragaRezultatiProps) {
   const t = useT('pretraga');
   const listRef = useRef<FlashListRef<BiljkaPreviewItem>>(null);
@@ -124,6 +131,8 @@ export function PretragaRezultati({
   }, [strana]);
 
   if (isLoading) return <PretragaRezultatiSkeleton />;
+
+  if (isError) return <ErrorFallback onReset={onRefresh} />;
 
   if (biljke.length === 0) {
     if (isFetching) return <View className="flex-1 items-center justify-center"><Spinner size="large" /></View>;
@@ -157,6 +166,9 @@ export function PretragaRezultati({
           ukupno_strana={ukupno_strana}
           onStranaChange={onStranaChange}
         />
+      }
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 8 }}
