@@ -31,7 +31,8 @@
   },
   "pretraga": {
     "nema_rezultata": "Nema rezultata za vasu pretragu",
-    "nema_rezultata_opis": "Pokusajte sa drugim kljucnim recima ili ocistite filtere"
+    "nema_rezultata_opis": "Pokusajte sa drugim kljucnim recima ili ocistite filtere",
+    "ukupno_rezultata": "{ukupno} biljaka"
   },
   "prepoznavanje": {
     "naslov": "Prepoznaj biljku",

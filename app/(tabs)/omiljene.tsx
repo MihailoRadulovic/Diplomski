@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { View, Text, Pressable, ScrollView } from 'react-native';
+import { View, Text, Pressable, ScrollView, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useFocusEffect } from 'expo-router';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
 import { FlashList } from '@shopify/flash-list';
 import { useOmiljene } from '@/hooks/useOmiljene';
@@ -59,6 +59,8 @@ export default function OmiljeneTab() {
     zatvoriGuestBaner,
     checkGuestBaner,
   } = useOmiljene();
+  const queryClient = useQueryClient();
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   useFocusEffect(useCallback(() => {
     if (jeGost === true) {
@@ -82,6 +84,16 @@ export default function OmiljeneTab() {
     enabled: jeGost === true,
     staleTime: 1000 * 60 * 5,
   });
+
+  const handleRefresh = useCallback(async () => {
+    setIsRefreshing(true);
+    if (jeGost === true) {
+      await queryClient.invalidateQueries({ queryKey: ['guest-omiljene-biljke'] });
+    } else if (jeGost === false) {
+      await queryClient.invalidateQueries({ queryKey: ['omiljene'] });
+    }
+    setIsRefreshing(false);
+  }, [jeGost, queryClient]);
 
   const showLoader =
     jeGost === null ||
@@ -117,6 +129,8 @@ export default function OmiljeneTab() {
     </View>
   ) : null;
 
+  const refreshControl = <RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh} />;
+
   return (
     <SafeAreaView className="flex-1 bg-white dark:bg-[#0F1A08]">
       {/* Loader */}
@@ -131,7 +145,11 @@ export default function OmiljeneTab() {
 
       {/* Gost — prazno */}
       {!showLoader && jeGost === true && guestStavke.length === 0 && (
-        <ScrollView className="flex-1 px-4" contentContainerStyle={{ paddingBottom: 24 }}>
+        <ScrollView
+          className="flex-1 px-4"
+          contentContainerStyle={{ paddingBottom: 24 }}
+          refreshControl={refreshControl}
+        >
           <NaslovOmiljene />
           <PraznoStanje />
         </ScrollView>
@@ -167,6 +185,7 @@ export default function OmiljeneTab() {
               </View>
             );
           }}
+          refreshControl={refreshControl}
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}
           showsVerticalScrollIndicator={false}
         />
@@ -174,7 +193,11 @@ export default function OmiljeneTab() {
 
       {/* Auth — prazno */}
       {!isLoading && jeGost === false && omiljene.length === 0 && (
-        <ScrollView className="flex-1 px-4" contentContainerStyle={{ paddingBottom: 24 }}>
+        <ScrollView
+          className="flex-1 px-4"
+          contentContainerStyle={{ paddingBottom: 24 }}
+          refreshControl={refreshControl}
+        >
           <NaslovOmiljene />
           <PraznoStanje />
         </ScrollView>
@@ -208,6 +231,7 @@ export default function OmiljeneTab() {
               </View>
             );
           }}
+          refreshControl={refreshControl}
           contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 24 }}
           showsVerticalScrollIndicator={false}
         />
