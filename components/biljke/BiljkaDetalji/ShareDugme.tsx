@@ -12,7 +12,7 @@ export function ShareDugme({ naziv, opis }: ShareDugmeProps) {
   const handleShare = async () => {
     await Share.share({
       title: naziv,
-      message: `${naziv}\n\n${opis?.slice(0, 200)}...`,
+      message: `${naziv}\n\n${opis.slice(0, 200)}...`,
     });
   };
 

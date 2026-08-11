@@ -142,7 +142,6 @@ export default function OmiljeneTab() {
         <FlashList
           data={guestBiljke}
           numColumns={2}
-
           keyExtractor={(item) => item.id}
           ListHeaderComponent={
             <View>
@@ -186,7 +185,6 @@ export default function OmiljeneTab() {
         <FlashList
           data={omiljene}
           numColumns={2}
-
           keyExtractor={(stavka) => stavka.id}
           ListHeaderComponent={<NaslovOmiljene />}
           renderItem={({ item: stavka }) => {

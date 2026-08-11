@@ -50,7 +50,7 @@ export function BiljkaDanaSekcija() {
 
       {biljka && !isLoading && (
         <Pressable
-          onPress={() => router.push(`/biljka/${biljka.slug}` as never)}
+          onPress={() => router.push(`/biljka/${biljka.slug}`)}
           style={({ pressed }) => (pressed ? { opacity: 0.9 } : undefined)}
           className="rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900"
           accessibilityRole="button"

@@ -20,6 +20,9 @@
       },
       "package": "com.lekovitobilje.app"
     },
+    "experiments": {
+      "typedRoutes": true
+    },
     "plugins": [
       ["expo-image-picker", {
         "cameraPermission": "Dozvoli pristup kameri za prepoznavanje biljaka.",

@@ -7,6 +7,8 @@ import { useFonts, PlayfairDisplay_700Bold, PlayfairDisplay_400Regular, Playfair
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useTheme } from '@/hooks/useTheme';
+import { supabase } from '@/lib/supabase/client';
+import { useAuthStore } from '@/stores/authStore';
 import '@/i18n';
 import '@/global.css';
 
@@ -35,6 +37,17 @@ export default function RootLayout() {
   useEffect(() => {
     if (fontsLoaded || fontError) SplashScreen.hideAsync();
   }, [fontsLoaded, fontError]);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      useAuthStore.getState()._setKorisnik(session?.user ?? null);
+      useAuthStore.getState()._setUcitava(false);
+    });
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      useAuthStore.getState()._setKorisnik(session?.user ?? null);
+    });
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   if (!fontsLoaded && !fontError) return null;
 

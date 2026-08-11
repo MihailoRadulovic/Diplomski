@@ -10,7 +10,10 @@ export function useNedavnoPregledano() {
 
   const zapisi = useCallback(async (stavka: NedavnaStavka) => {
     await zapisiNedavnu(stavka);
-    setStavke(await ucitajNedavne());
+    setStavke((prev) => {
+      const filtrirano = prev.filter((s) => s.slug !== stavka.slug);
+      return [stavka, ...filtrirano].slice(0, 5);
+    });
   }, []);
 
   // osvezi se koristi u NedavnoPregledano komponenti kroz useFocusEffect

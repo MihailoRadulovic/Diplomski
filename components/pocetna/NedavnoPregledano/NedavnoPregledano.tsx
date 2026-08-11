@@ -30,7 +30,7 @@ export function NedavnoPregledano() {
         {stavke.map((s) => (
           <Pressable
             key={s.slug}
-            onPress={() => router.push(`/biljka/${s.slug}` as never)}
+            onPress={() => router.push(`/biljka/${s.slug}`)}
             style={({ pressed }) => (pressed ? { opacity: 0.75 } : undefined)}
             className="mr-3 items-center w-24"
             accessibilityRole="button"

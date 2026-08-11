@@ -3,7 +3,11 @@
     "prijava": "Prijava",
     "odjava": "Odjava",
     "omiljene": "Omiljene",
-    "registracija": "Registracija"
+    "registracija": "Registracija",
+    "pocetna": "Početna",
+    "pretraga": "Pretraga",
+    "kamera": "Kamera",
+    "podesavanja": "Podešavanja"
   },
   "pocetna": {
     "naslov": "Lekovito bilje",
@@ -106,5 +110,11 @@
     "otkazi": "Otkazi",
     "nalog": "Nalog",
     "odjavi_se": "Odjavi se"
+  },
+  "greske": {
+    "naslov": "Doslo je do greske",
+    "opis": "Nesto nije proslo kako treba. Mozete pokusati ponovo ili se vratiti na pocetnu stranicu.",
+    "pokusaj_ponovo": "Pokusaj ponovo",
+    "vrati_se": "Vrati se na pocetnu"
   }
 }

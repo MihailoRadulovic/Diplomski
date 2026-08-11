@@ -23,6 +23,7 @@ export function OmiljenaToggle({ biljkaId, slug }: OmiljenaToggleProps) {
   return (
     <Pressable
       onPress={handlePress}
+      disabled={jeGost === null}
       accessibilityRole="button"
       accessibilityLabel={aktivan ? 'Ukloni iz omiljenih' : 'Dodaj u omiljene'}
       accessibilityState={{ checked: aktivan }}

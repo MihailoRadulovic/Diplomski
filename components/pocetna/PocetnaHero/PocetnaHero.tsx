@@ -77,10 +77,11 @@ export function PocetnaHero() {
 
         {/* Primarni CTA */}
         <Pressable
-          onPress={() => router.push("/(tabs)/prepoznavanje" as never)}
+          onPress={() => router.push("/(tabs)/prepoznavanje")}
           style={({ pressed }) => (pressed ? { opacity: 0.85 } : undefined)}
           className="w-full mt-2 py-3.5 rounded-xl bg-[#639922] items-center flex-row justify-center gap-2"
           accessibilityRole="button"
+          accessibilityLabel={t('poziv_prepoznavanje')}
         >
           <Ionicons name="camera-outline" size={16} color="white" />
           <Text
@@ -95,7 +96,7 @@ export function PocetnaHero() {
       {/* Sekundarni CTA — ispod obojene trake */}
       <View className="flex-row px-4 pb-4 gap-3">
         <Pressable
-          onPress={() => router.push("/(tabs)/pretraga" as never)}
+          onPress={() => router.push("/(tabs)/pretraga")}
           style={({ pressed }) => (pressed ? { opacity: 0.85 } : undefined)}
           className="flex-1 py-2.5 rounded-xl bg-[#D4EDAA] dark:bg-[#1A3A0A] items-center flex-row justify-center gap-2"
           accessibilityRole="button"

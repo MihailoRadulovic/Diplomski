@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -10,9 +10,15 @@ interface PretragaInputProps {
 }
 
 export function PretragaInput({ value, onSearch }: PretragaInputProps) {
+  const [localValue, setLocalValue] = useState(value);
   const timerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
+  useEffect(() => {
+    setLocalValue(value);
+  }, [value]);
+
   const handleChange = (tekst: string) => {
+    setLocalValue(tekst);
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => onSearch(tekst), DEBOUNCE_MS);
   };
@@ -21,7 +27,7 @@ export function PretragaInput({ value, onSearch }: PretragaInputProps) {
     <View className="flex-row items-center border border-zinc-300 dark:border-zinc-700 rounded-xl px-3 py-2 mb-2 bg-white dark:bg-zinc-900">
       <Ionicons name="search-outline" size={18} color="#9CA3AF" style={{ marginRight: 6 }} />
       <TextInput
-        defaultValue={value}
+        value={localValue}
         onChangeText={handleChange}
         placeholder="Pretrazite bilje..."
         placeholderTextColor="#9CA3AF"

@@ -18,7 +18,7 @@ export const BiljkaKartica = memo(function BiljkaKartica({
 }: BiljkaKarticaProps) {
   return (
     <Pressable
-      onPress={() => router.push(`/biljka/${slug}` as never)}
+      onPress={() => router.push(`/biljka/${slug}`)}
       style={({ pressed }) => (pressed ? { opacity: 0.85 } : undefined)}
       className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden"
       accessibilityRole="button"

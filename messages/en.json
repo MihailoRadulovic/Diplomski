@@ -3,7 +3,11 @@
     "prijava": "Login",
     "odjava": "Logout",
     "omiljene": "Favorites",
-    "registracija": "Register"
+    "registracija": "Register",
+    "pocetna": "Home",
+    "pretraga": "Search",
+    "kamera": "Camera",
+    "podesavanja": "Settings"
   },
   "pocetna": {
     "naslov": "Medicinal Herbs",
@@ -106,5 +110,11 @@
     "otkazi": "Cancel",
     "nalog": "Account",
     "odjavi_se": "Log out"
+  },
+  "greske": {
+    "naslov": "An error occurred",
+    "opis": "Something went wrong. You can try again or go back to the home screen.",
+    "pokusaj_ponovo": "Try again",
+    "vrati_se": "Back to home"
   }
 }

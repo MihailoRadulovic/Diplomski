@@ -2,6 +2,7 @@ import { View, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { SERIF_BOLD } from '@/lib/constants/fontovi';
+import { useT } from '@/hooks/useT';
 
 interface ErrorFallbackProps {
   onReset?: () => void;
@@ -9,6 +10,8 @@ interface ErrorFallbackProps {
 
 // Stack trace se nikad ne prikazuje korisniku — samo friendly poruka
 export function ErrorFallback({ onReset }: ErrorFallbackProps) {
+  const t = useT('greske');
+
   return (
     <View
       accessibilityRole="alert"
@@ -19,10 +22,10 @@ export function ErrorFallback({ onReset }: ErrorFallbackProps) {
         className="text-xl text-tekst-primarni dark:text-[#E8F5E2] mb-2 text-center"
         style={{ fontFamily: SERIF_BOLD }}
       >
-        Doslo je do greske
+        {t('naslov')}
       </Text>
       <Text className="text-sm text-tekst-blagi dark:text-zinc-400 max-w-xs text-center mb-6">
-        Nesto nije proslo kako treba. Mozete pokusati ponovo ili se vratiti na pocetnu stranicu.
+        {t('opis')}
       </Text>
       <View className="flex-row gap-3">
         {onReset && (
@@ -30,18 +33,18 @@ export function ErrorFallback({ onReset }: ErrorFallbackProps) {
             onPress={onReset}
             className="px-4 py-2 rounded-xl bg-[#639922]"
             accessibilityRole="button"
-            accessibilityLabel="Pokusaj ponovo"
+            accessibilityLabel={t('pokusaj_ponovo')}
           >
-            <Text className="text-white font-semibold">Pokusaj ponovo</Text>
+            <Text className="text-white font-semibold">{t('pokusaj_ponovo')}</Text>
           </Pressable>
         )}
         <Pressable
           onPress={() => router.replace('/')}
           className="px-4 py-2 rounded-xl bg-pozadina-kartica dark:bg-zinc-800"
           accessibilityRole="button"
-          accessibilityLabel="Vrati se na pocetnu"
+          accessibilityLabel={t('vrati_se')}
         >
-          <Text className="text-tekst-primarni dark:text-[#E8F5E2] font-semibold">Vrati se na pocetnu</Text>
+          <Text className="text-tekst-primarni dark:text-[#E8F5E2] font-semibold">{t('vrati_se')}</Text>
         </Pressable>
       </View>
     </View>

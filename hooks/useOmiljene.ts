@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase/client';
+import { useAuthStore } from '@/stores/authStore';
 import {
   guestOmiljeneUcitaj,
   guestOmiljeneSacuvaj,
@@ -40,7 +41,8 @@ async function fetchAuthOmiljene(): Promise<OmiljenaStavka[]> {
 
 export function useOmiljene() {
   const queryClient = useQueryClient();
-  const [jeGost, setJeGost] = useState<boolean | null>(null);
+  const { korisnik, ucitava } = useAuthStore();
+  const jeGost: boolean | null = ucitava ? null : korisnik === null;
   const [guestStavke, setGuestStavke] = useState<GuestOmiljena[]>([]);
   const [showGuestBaner, setShowGuestBaner] = useState(false);
 
@@ -58,35 +60,13 @@ export function useOmiljene() {
   }, [queryClient]);
 
   useEffect(() => {
-    const init = async () => {
-      const stavke = await guestOmiljeneUcitaj();
-      setGuestStavke(stavke);
-      setJeGost(true);
-    };
-
-    // getUser() verifikuje token na serveru — pouzdano za migraciju
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setJeGost(false);
-        migrirajGuestOmiljene();
-      } else {
-        init();
-      }
-    });
-
-    // Prati login/logout dok je hook aktivan
-    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
-      if (event === 'SIGNED_IN') {
-        setJeGost(false);
-        migrirajGuestOmiljene();
-      } else if (event === 'SIGNED_OUT') {
-        setGuestStavke([]);
-        setJeGost(true);
-      }
-    });
-
-    return () => listener.subscription.unsubscribe();
-  }, [migrirajGuestOmiljene]);
+    if (ucitava) return;
+    if (korisnik) {
+      migrirajGuestOmiljene();
+    } else {
+      guestOmiljeneUcitaj().then(setGuestStavke);
+    }
+  }, [ucitava, korisnik?.id, migrirajGuestOmiljene]);
 
   const { data: omiljene = [], isLoading: isLoadingAuth } = useQuery({
     queryKey: ['omiljene'],
