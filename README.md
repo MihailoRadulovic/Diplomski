@@ -11,7 +11,17 @@ A mobile application for identifying and exploring medicinal plants. Users can r
 
 ## Screenshots
 
-> _Coming soon_
+| Početna | Pretraga | Detalji biljke |
+|:---:|:---:|:---:|
+| ![Početna](./assets/screenshots/pocetna.png) | ![Pretraga](./assets/screenshots/pretraga.png) | ![Detalji biljke](./assets/screenshots/detalji-biljke.png) |
+
+| Prepoznavanje | Sa slikom | Rezultat |
+|:---:|:---:|:---:|
+| ![Prepoznavanje](./assets/screenshots/prepoznavanje.png) | ![Sa slikom](./assets/screenshots/prepoznavanje-slika.png) | ![Rezultat](./assets/screenshots/prepoznavanje-rezultat.png) |
+
+| Omiljene | Podešavanja |
+|:---:|:---:|
+| ![Omiljene](./assets/screenshots/omiljene.png) | ![Podešavanja](./assets/screenshots/podesavanja.png) |
 
 ---
 
