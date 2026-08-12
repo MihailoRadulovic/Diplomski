@@ -13,15 +13,15 @@ A mobile application for identifying and exploring medicinal plants. Users can r
 
 | Početna | Pretraga | Detalji biljke |
 |:---:|:---:|:---:|
-| ![Početna](./assets/screenshots/pocetna.png) | ![Pretraga](./assets/screenshots/pretraga.png) | ![Detalji biljke](./assets/screenshots/detalji-biljke.png) |
+| <img src="./assets/screenshots/pocetna.png" width="220"> | <img src="./assets/screenshots/pretraga.png" width="220"> | <img src="./assets/screenshots/detalji-biljke.png" width="220"> |
 
 | Prepoznavanje | Sa slikom | Rezultat |
 |:---:|:---:|:---:|
-| ![Prepoznavanje](./assets/screenshots/prepoznavanje.png) | ![Sa slikom](./assets/screenshots/prepoznavanje-slika.png) | ![Rezultat](./assets/screenshots/prepoznavanje-rezultat.png) |
+| <img src="./assets/screenshots/prepoznavanje.png" width="220"> | <img src="./assets/screenshots/prepoznavanje-slika.png" width="220"> | <img src="./assets/screenshots/prepoznavanje-rezultat.png" width="220"> |
 
 | Omiljene | Podešavanja |
 |:---:|:---:|
-| ![Omiljene](./assets/screenshots/omiljene.png) | ![Podešavanja](./assets/screenshots/podesavanja.png) |
+| <img src="./assets/screenshots/omiljene.png" width="220"> | <img src="./assets/screenshots/podesavanja.png" width="220"> |
 
 ---
 
