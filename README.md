@@ -55,8 +55,8 @@ A mobile application for identifying and exploring medicinal plants. Users can r
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/lekovito-bilje.git
-cd lekovito-bilje
+git clone https://github.com/MihailoRadulovic/Diplomski.git
+cd Diplomski
 npm install
 ```
 
@@ -130,6 +130,70 @@ i18n/index.ts               # i18next configuration
 
 ---
 
+## Database Schema (Supabase)
+
+| Table | Key columns |
+|---|---|
+| `biljke` | `id`, `srpski_naziv`, `latinski_naziv`, `slug`, `porodica`, `opis`, `delovanje`, `plantnet_nazivi[]` |
+| `biljka_slike` | `id`, `biljka_id`, `url`, `alt_tekst`, `je_glavna` |
+| `biljka_upotrebe` | `id`, `biljka_id`, `deo_biljke`, `nacin_upotrebe`, `za_sta` |
+| `biljka_upozorenja` | `id`, `biljka_id`, `lek`, `opis_interakcije`, `ozbiljnost` (`niska`\|`srednja`\|`visoka`) |
+| `omiljene` | `id`, `user_id`, `biljka_id`, `deleted_at` — `user_id` set automatically via RLS (`auth.uid()`) |
+
+Full types: [`types/database.ts`](./types/database.ts)
+
+---
+
+## Plant Recognition API
+
+**Endpoint:** `POST {EXPO_PUBLIC_VERCEL_API_URL}/api/prepoznavanje`
+
+**Request:** `multipart/form-data`
+
+| Field | Type | Description |
+|---|---|---|
+| `image` | file | JPEG / PNG / WebP, max 10 MB |
+| `organ` | string | `leaf` \| `flower` \| `fruit` \| `bark` \| `habit` \| `other` (default: `leaf`) |
+
+**Response:** `{ data: PrepoznavanjeOdgovorData }`
+
+```ts
+// Plant found in the database
+{ tip: "u_bazi"; slug: string; naziv: string; latinskiNaziv: string; pouzdanost: number; preostalihZahteva: number }
+
+// Plant recognized but not in the database
+{ tip: "nije_u_bazi"; naziv: string; pouzdanost: number; preostalihZahteva: number }
+
+// Unrecognized
+{ tip: "nije_prepoznato" }
+```
+
+The server retries PlantNet 3 times internally — no client-side retry needed.
+
+---
+
+## Development Notes
+
+These conventions apply throughout the codebase:
+
+**Fonts** — always use constants from `lib/constants/fontovi.ts`, never hardcoded strings:
+```ts
+import { SERIF_BOLD, SERIF_ITALIC, SERIF_REGULAR } from '@/lib/constants/fontovi.ts';
+// SERIF_BOLD    → 'PlayfairDisplay-Bold'
+// SERIF_ITALIC  → 'PlayfairDisplay-Italic'
+// SERIF_REGULAR → 'PlayfairDisplay-Regular'
+```
+
+**Dark mode** — every component must include `dark:` NativeWind variants at the time of writing, never added later.
+
+**Auth routes** — always use `/(auth)/prijava` and `/(auth)/registracija`, never `/prijava`.
+
+**Search filtering** — filters go through `delovanje.ilike('%value%')`. The `tagovi` column exists in the DB but is not used for filtering.
+
+**Supabase** — called directly from hooks, no API layer in between. Client is at `lib/supabase/client.ts`.
+
+---
+
 ## License
 
-MIT
+MIT — Copyright (c) 2025 Mihailo Radulovic
